@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazing Thailand - แหล่งท่องเที่ยวประเทศไทย</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Prompt & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom Configurations & Styles -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Prompt', 'Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        thai: {
+                            gold: '#D4AF37',
+                            goldDark: '#AA820A',
+                            emerald: '#0F5132',
+                            emeraldLight: '#198754',
+                            sand: '#F4F1EA',
+                            dark: '#1A2E26',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .card-blur {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #0F5132;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #AA820A;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-slate-800 font-sans min-h-screen flex flex-col transition-colors duration-300">
+
+    <!-- Navigation Bar -->
+    <nav class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-gray-100 shadow-sm transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-thai-emerald rounded-xl flex items-center justify-center text-white shadow-md shadow-thai-emerald/20">
+                        <i class="fa-solid fa-gopuran text-xl"></i>
+                    </div>
+                    <div>
+                        <span class="text-xl font-bold bg-gradient-to-r from-thai-emerald to-thai-gold bg-clip-text text-transparent">Amazing Siam</span>
+                        <p class="text-xs text-gray-500 tracking-wider">THAILAND TOURISM</p>
+                    </div>
+                </div>
+
+                <!-- Navigation Links -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-thai-emerald font-medium hover:text-thai-gold transition-colors">หน้าแรก</a>
+                    <a href="#gallery" class="text-gray-600 hover:text-thai-emerald transition-colors">สถานที่ท่องเที่ยว</a>
+                    <a href="#custom-section" class="text-gray-600 hover:text-thai-emerald transition-colors">เพิ่มสถานที่ของคุณ</a>
+                    <a href="#contact" class="text-gray-600 hover:text-thai-emerald transition-colors">ติดต่อเรา</a>
+                </div>
+
+                <!-- Action Button: Edit Mode Toggle -->
+                <div class="flex items-center space-x-3">
+                    <button id="toggle-edit-mode" class="flex items-center space-x-2 px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-full text-sm font-medium shadow-md transition-all transform hover:scale-105">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                        <span id="edit-btn-text">เปิดโหมดแก้ไขรูปภาพ</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative bg-thai-dark text-white py-24 md:py-36 overflow-hidden">
+        <!-- Background Overlay Pattern/Gradient (Since actual user images will be added later) -->
+        <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-thai-dark/85 to-transparent z-10"></div>
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center mix-blend-overlay opacity-40"></div>
+        
+        <!-- Decorative golden element -->
+        <div class="absolute top-0 right-0 w-96 h-96 bg-thai-gold/10 rounded-full blur-3xl -mr-20 -mt-20"></div>
+
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-20">
+            <div class="max-w-2xl">
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-thai-gold/20 text-thai-gold border border-thai-gold/30 mb-6 uppercase tracking-wider">
+                    <i class="fa-solid fa-star mr-1"></i> ยินดีต้อนรับสู่สยามเมืองยิ้ม
+                </span>
+                <h1 class="text-4xl md:text-6xl font-bold tracking-tight leading-tight mb-6">
+                    ค้นพบมนต์เสน่ห์<br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-thai-gold via-yellow-400 to-white">สถานที่ท่องเที่ยว</span> ทั่วไทย
+                </h1>
+                <p class="text-gray-300 text-base md:text-lg mb-8 leading-relaxed">
+                    ร่วมออกเดินทางสัมผัสความงดงามของธรรมชาติ ศิลปวัฒนธรรมอันล้ำค่า และวิถีชีวิตที่เป็นเอกลักษณ์ของประเทศไทย ตั้งแต่เหนือจรดใต้ 
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#gallery" class="px-6 py-3 bg-thai-gold hover:bg-thai-goldDark text-thai-dark font-semibold rounded-xl shadow-lg transition-all transform hover:-translate-y-1">
+                        เริ่มสำรวจสถานที่ <i class="fa-solid fa-arrow-down ml-2"></i>
+                    </a>
+                    <button onclick="scrollToSection('custom-section')" class="px-6 py-3 bg-white/10 hover:bg-white/20 text-white font-medium rounded-xl border border-white/20 backdrop-blur-sm transition-all">
+                        <i class="fa-solid fa-plus mr-2"></i>เพิ่มรูปภาพของคุณเอง
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Developer Mode Active Alert (Sticky Top Banner when active) -->
+    <div id="editor-banner" class="hidden bg-amber-500 text-white px-4 py-3 shadow-inner transition-all">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+            <div class="flex items-center space-x-2 font-medium">
+                <i class="fa-solid fa-circle-info animate-pulse text-lg"></i>
+                <span><strong>โหมดแก้ไขรูปภาพเปิดอยู่:</strong> คุณสามารถกดปุ่ม "แก้ไขภาพ/ข้อมูล" บนการ์ดสถานที่แต่ละใบเพื่ออัปเดตรูปภาพได้ทันที!</span>
+            </div>
+            <div class="flex items-center space-x-3">
+                <button onclick="exportJSONData()" class="px-3 py-1 bg-white text-amber-600 rounded-md text-xs font-bold shadow-sm hover:bg-amber-50 transition-all">
+                    <i class="fa-solid fa-download mr-1"></i> คัดลอกโค้ดข้อมูล (JSON)
+                </button>
+                <button onclick="resetToDefault()" class="px-3 py-1 bg-amber-700/50 text-white rounded-md text-xs font-bold hover:bg-amber-700/80 transition-all">
+                    รีเซ็ตทั้งหมด
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Content Section -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full">
+        
+        <!-- Search and Filters Section -->
+        <section id="gallery" class="mb-12">
+            <div class="text-center max-w-xl mx-auto mb-10">
+                <h2 class="text-3xl font-bold text-gray-900 mb-3">มหัศจรรย์เมืองไทย</h2>
+                <p class="text-gray-500">เลือกค้นหาตามภูมิภาคหรือประเภทแหล่งท่องเที่ยว เพื่อค้นพบปลายทางในฝันของคุณ</p>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 mb-8">
+                <div class="flex flex-col md:flex-row gap-4 justify-between items-center">
+                    
+                    <!-- Search Input -->
+                    <div class="relative w-full md:w-96">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </span>
+                        <input type="text" id="search-input" oninput="filterAttractions()" placeholder="ค้นหาชื่อสถานที่ หรือ จังหวัด..." class="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-thai-emerald focus:border-transparent transition-all">
+                    </div>
+
+                    <!-- Filters Options -->
+                    <div class="flex flex-wrap gap-2 w-full md:w-auto justify-end">
+                        <button onclick="setFilter('all', this)" class="filter-btn active px-4 py-2 rounded-xl text-sm font-medium transition-all bg-thai-emerald text-white shadow-sm">
+                            ทั้งหมด
+                        </button>
+                        <button onclick="setFilter('north', this)" class="filter-btn px-4 py-2 rounded-xl text-sm font-medium transition-all bg-gray-100 text-gray-600 hover:bg-gray-200">
+                            ภาคเหนือ
+                        </button>
+                        <button onclick="setFilter('central', this)" class="filter-btn px-4 py-2 rounded-xl text-sm font-medium transition-all bg-gray-100 text-gray-600 hover:bg-gray-200">
+                            ภาคกลาง
+                        </button>
+                        <button onclick="setFilter('south', this)" class="filter-btn px-4 py-2 rounded-xl text-sm font-medium transition-all bg-gray-100 text-gray-600 hover:bg-gray-200">
+                            ภาคใต้
+                        </button>
+                        <button onclick="setFilter('northeast', this)" class="filter-btn px-4 py-2 rounded-xl text-sm font-medium transition-all bg-gray-100 text-gray-600 hover:bg-gray-200">
+                            ภาคอีสาน
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cards Grid -->
+            <div id="attractions-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Javascript will render initial beautifully-styled card slots here -->
+            </div>
+
+            <!-- Empty State for Search -->
+            <div id="empty-state" class="hidden text-center py-16">
+                <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4 text-gray-400">
+                    <i class="fa-regular fa-folder-open text-2xl"></i>
+                </div>
+                <h3 class="text-lg font-bold text-gray-800">ไม่พบสถานที่ท่องเที่ยวที่ตรงตามเงื่อนไข</h3>
+                <p class="text-gray-500 mt-1">ลองเปลี่ยนคำค้นหาหรือตัวกรองภูมิภาคใหม่อีกครั้ง</p>
+            </div>
+        </section>
+
+        <!-- Add Custom Place / Image Manager Section -->
+        <section id="custom-section" class="mb-16 bg-gradient-to-br from-thai-sand to-white rounded-3xl p-8 border border-thai-emerald/10 shadow-sm">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div class="lg:col-span-5">
+                    <span class="text-xs font-bold text-thai-emerald uppercase tracking-wider bg-thai-emerald/10 px-3 py-1 rounded-full">ออกแบบหน้าเว็บด้วยตัวคุณเอง</span>
+                    <h2 class="text-3xl font-bold text-gray-900 mt-3 mb-4">เพิ่มสถานที่ใหม่และรูปภาพของคุณ</h2>
+                    <p class="text-gray-600 leading-relaxed mb-6">
+                        คุณสามารถเพิ่มสถานที่ใหม่เข้าไปในหน้าเว็บนี้ได้โดยตรง! เพียงกรอกข้อมูล ชื่อสถานที่, คำอธิบาย และใส่ลิงก์รูปภาพ (หรือใช้ปุ่มจำลองรูป) ข้อมูลทั้งหมดจะบันทึกอยู่ในเบราว์เซอร์ของคุณทันที
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-3">
+                            <div class="w-6 h-6 rounded-full bg-thai-gold/20 flex items-center justify-center text-thai-goldDark text-xs font-bold mt-1">1</div>
+                            <p class="text-sm text-gray-600"><strong>เตรียมลิงก์รูปภาพ:</strong> คุณสามารถใช้รูปภาพจากอินเทอร์เน็ต เช่น Unsplash, Facebook หรือฝากรูปฟรีแล้วก็อปปี้ลิงก์รูป (URL ที่ลงท้ายด้วย .jpg, .png) มาวางได้เลย</p>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-6 h-6 rounded-full bg-thai-gold/20 flex items-center justify-center text-thai-goldDark text-xs font-bold mt-1">2</div>
+                            <p class="text-sm text-gray-600"><strong>อัปโหลดแบบ Local:</strong> หรือเลือกไฟล์จากคอมพิวเตอร์ของคุณ ระบบจะแปลงเป็นรูปภาพจำลองและแสดงผลบนเว็บทันที</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 bg-white p-6 rounded-2xl shadow-md border border-gray-100">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4 border-b pb-3"><i class="fa-solid fa-map-location-dot text-thai-emerald mr-2"></i>ฟอร์มเพิ่มสถานที่ท่องเที่ยวใหม่</h3>
+                    <form id="add-attraction-form" onsubmit="handleAddAttraction(event)" class="space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 uppercase mb-1">ชื่อสถานที่ *</label>
+                                <input type="text" id="new-title" required placeholder="เช่น วัดร่องขุ่น" class="w-full px-4 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-thai-emerald focus:outline-none transition-all">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 uppercase mb-1">จังหวัด *</label>
+                                <input type="text" id="new-location" required placeholder="เช่น เชียงราย" class="w-full px-4 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-thai-emerald focus:outline-none transition-all">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 uppercase mb-1">ภูมิภาค *</label>
+                                <select id="new-region" required class="w-full px-4 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-thai-emerald focus:outline-none transition-all">
+                                    <option value="north">ภาคเหนือ</option>
+                                    <option value="central">ภาคกลาง</option>
+                                    <option value="south">ภาคใต้</option>
+                                    <option value="northeast">ภาคอีสาน</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 uppercase mb-1">ประเภท</label>
+                                <input type="text" id="new-tag" placeholder="เช่น วัด, ภูเขา, ทะเล" class="w-full px-4 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-thai-emerald focus:outline-none transition-all">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 uppercase mb-1">ลิงก์ URL รูปภาพ (หรืออัปโหลดด้านล่าง)</label>
+                            <input type="url" id="new-image-url" placeholder="https://images.unsplash.com/..." class="w-full px-4 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-thai-emerald focus:outline-none transition-all">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 uppercase mb-1">หรือเลือกไฟล์รูปภาพจากเครื่อง</label>
+                            <div class="flex items-center space-x-3">
+                                <label class="w-full flex flex-col items-center px-4 py-2 bg-white text-gray-600 rounded-xl border border-dashed border-gray-300 cursor-pointer hover:bg-gray-50 hover:border-thai-emerald transition-all">
+                                    <span class="text-sm font-medium" id="file-upload-status"><i class="fa-solid fa-cloud-arrow-up mr-2 text-thai-emerald"></i>คลิกเพื่อเลือกไฟล์รูปภาพ</span>
+                                    <input type="file" id="new-image-file" accept="image/*" onchange="handleFileSelect(this)" class="hidden">
+                                </label>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 uppercase mb-1">คำอธิบายย่อส่วน *</label>
+                            <textarea id="new-description" required rows="3" placeholder="บรรยายสถานที่ท่องเที่ยวที่สำคัญ..." class="w-full px-4 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-thai-emerald focus:outline-none transition-all"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-3 bg-thai-emerald hover:bg-thai-dark text-white font-bold rounded-xl shadow-md transition-all">
+                            <i class="fa-solid fa-cloud-arrow-up mr-2"></i> บันทึกเพิ่มสถานที่
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Detailed View Modal -->
+    <div id="detail-modal" class="hidden fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <!-- Overlay -->
+            <div class="fixed inset-0 bg-black/60 transition-opacity" onclick="closeModal()"></div>
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            
+            <!-- Modal Content -->
+            <div class="inline-block align-bottom bg-white rounded-2xl text-left overflow-hidden shadow-2xl transform transition-all sm:my-8 sm:align-middle sm:max-w-3xl sm:w-full">
+                <!-- Modal Banner Image -->
+                <div class="relative h-64 md:h-96 w-full">
+                    <img id="modal-image" class="w-full h-full object-cover" src="https://placehold.co/800x400" alt="Attraction image">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                    <button onclick="closeModal()" class="absolute top-4 right-4 bg-black/50 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-black/80 transition-all focus:outline-none">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                    <!-- Badges -->
+                    <div class="absolute bottom-6 left-6 right-6">
+                        <div class="flex flex-wrap gap-2 mb-2">
+                            <span id="modal-region" class="px-2.5 py-1 bg-thai-gold text-thai-dark rounded-full text-xs font-bold uppercase tracking-wider">ภาคเหนือ</span>
+                            <span id="modal-tag" class="px-2.5 py-1 bg-white/20 text-white rounded-full text-xs backdrop-blur-sm">แท็ก</span>
+                        </div>
+                        <h3 id="modal-title-text" class="text-2xl md:text-3xl font-bold text-white">ชื่อสถานที่</h3>
+                    </div>
+                </div>
+
+                <!-- Modal Body -->
+                <div class="p-6 md:p-8 space-y-6">
+                    <div>
+                        <h4 class="text-sm font-bold text-thai-emerald tracking-wide uppercase mb-2"><i class="fa-solid fa-location-dot mr-1"></i> ที่ตั้งและรายละเอียด</h4>
+                        <p id="modal-location" class="text-sm text-gray-500 font-medium mb-3">จังหวัด, ประเทศไทย</p>
+                        <p id="modal-desc" class="text-gray-600 leading-relaxed text-base">คำอธิบายสถานที่ท่องเที่ยวโดยละเอียดที่นี่...</p>
+                    </div>
+
+                    <!-- Highlight Grid Info -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 py-4 border-y border-gray-100">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-emerald-50 text-thai-emerald rounded-lg flex items-center justify-center">
+                                <i class="fa-solid fa-clock"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-500">เวลาเปิดทำการ</p>
+                                <p class="text-sm font-semibold text-gray-800">08:00 - 17:00 น.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-amber-50 text-thai-goldDark rounded-lg flex items-center justify-center">
+                                <i class="fa-solid fa-ticket"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-500">ค่าเข้าชม</p>
+                                <p class="text-sm font-semibold text-gray-800">ฟรี (ชาวไทย)</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center">
+                                <i class="fa-solid fa-star text-amber-400"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-500">คะแนนรีวิว</p>
+                                <p class="text-sm font-semibold text-gray-800">4.9 / 5.0 (รีวิวดีเยี่ยม)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Travel Tips Alert Box -->
+                    <div class="bg-thai-sand/50 border border-thai-gold/20 rounded-xl p-4">
+                        <h5 class="text-sm font-bold text-thai-goldDark flex items-center mb-1">
+                            <i class="fa-solid fa-circle-exclamation mr-2"></i> คำแนะนำและมารยาทในการท่องเที่ยว
+                        </h5>
+                        <p class="text-xs text-gray-600 leading-relaxed">
+                            แต่งกายสุภาพเมื่อเข้าชมศาสนสถาน รักษาความสะอาด ไม่เก็บสิ่งของธรรมชาติกลับบ้าน และโปรดปฏิบัติตามกฎเกณฑ์ของอุทยานหรือสถานที่อย่างเคร่งครัด
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Modal Footer Actions -->
+                <div class="bg-gray-50 px-6 py-4 sm:flex sm:flex-row-reverse border-t border-gray-100 gap-2">
+                    <button onclick="closeModal()" type="button" class="w-full sm:w-auto px-5 py-2.5 bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold rounded-xl text-sm transition-all">
+                        ปิดหน้าต่างนี้
+                    </button>
+                    <button onclick="shareAttraction()" type="button" class="w-full sm:w-auto px-5 py-2.5 bg-thai-emerald hover:bg-thai-dark text-white font-semibold rounded-xl text-sm shadow-md transition-all flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-share"></i> คัดลอกลิงก์แชร์
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Specific Attraction Modal -->
+    <div id="edit-modal" class="hidden fixed inset-0 z-50 overflow-y-auto" role="dialog" aria-modal="true">
+        <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 bg-black/60 transition-opacity" onclick="closeEditModal()"></div>
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen">&#8203;</span>
+            
+            <div class="inline-block align-bottom bg-white rounded-2xl text-left overflow-hidden shadow-2xl transform transition-all sm:my-8 sm:align-middle sm:max-w-md sm:w-full p-6">
+                <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center">
+                    <i class="fa-solid fa-pen-to-square text-amber-500 mr-2"></i> แก้ไขข้อมูล / ภาพถ่าย
+                </h3>
+                
+                <form id="edit-attraction-form" onsubmit="handleSaveEdit(event)" class="space-y-4">
+                    <input type="hidden" id="edit-id">
+                    
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">ชื่อสถานที่</label>
+                        <input type="text" id="edit-title" required class="w-full px-3 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-amber-400 focus:outline-none transition-all">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">จังหวัด</label>
+                        <input type="text" id="edit-location" required class="w-full px-3 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-amber-400 focus:outline-none transition-all">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">ลิงก์ URL รูปภาพใหม่</label>
+                        <input type="url" id="edit-image-url" placeholder="วางลิงก์รูปตรงนี้..." class="w-full px-3 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-amber-400 focus:outline-none transition-all">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">หรือเลือกภาพใหม่จากเครื่อง</label>
+                        <label class="w-full flex flex-col items-center px-4 py-2 bg-white text-gray-600 rounded-xl border border-dashed border-gray-300 cursor-pointer hover:bg-gray-50 transition-all">
+                            <span class="text-xs" id="edit-file-status"><i class="fa-solid fa-file-image text-amber-500 mr-1"></i> เปลี่ยนด้วยภาพจากเครื่อง</span>
+                            <input type="file" id="edit-image-file" accept="image/*" onchange="handleEditFileSelect(this)" class="hidden">
+                        </label>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">คำอธิบาย</label>
+                        <textarea id="edit-description" rows="3" required class="w-full px-3 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-amber-400 focus:outline-none transition-all"></textarea>
+                    </div>
+
+                    <div class="flex justify-end space-x-2 pt-2 border-t">
+                        <button type="button" onclick="closeEditModal()" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl text-sm font-semibold">ยกเลิก</button>
+                        <button type="submit" class="px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-xl text-sm font-semibold shadow-sm">บันทึกการเปลี่ยนแปลง</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Global Toast Alert (Replacing alert window) -->
+    <div id="toast-message" class="fixed bottom-6 right-6 z-50 hidden transform transition-transform duration-300 translate-y-20">
+        <div class="flex items-center space-x-3 bg-thai-dark text-white px-5 py-3 rounded-2xl shadow-xl border border-white/10">
+            <div id="toast-icon-bg" class="w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold bg-thai-emerald text-white">
+                <i id="toast-icon" class="fa-solid fa-check"></i>
+            </div>
+            <div>
+                <p id="toast-text" class="text-sm font-medium">ทำรายการเสร็จสิ้น!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer id="contact" class="bg-thai-dark text-gray-300 border-t border-emerald-950 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Branding Col -->
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 bg-thai-gold rounded-lg flex items-center justify-center text-thai-dark font-bold">
+                            <i class="fa-solid fa-gopuran"></i>
+                        </div>
+                        <span class="text-lg font-bold text-white">Amazing Siam</span>
+                    </div>
+                    <p class="text-sm text-gray-400">
+                        แพลตฟอร์มพรีเมียมสำหรับจัดเก็บและแชร์ประสบการณ์เดินทางท่องเที่ยวอันงดงามของคุณในประเทศไทย
+                    </p>
+                    <div class="flex space-x-3">
+                        <a href="#" class="w-8 h-8 rounded-full bg-white/10 hover:bg-thai-gold hover:text-thai-dark flex items-center justify-center transition-all"><i class="fa-brands fa-facebook-f text-sm"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-white/10 hover:bg-thai-gold hover:text-thai-dark flex items-center justify-center transition-all"><i class="fa-brands fa-instagram text-sm"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-white/10 hover:bg-thai-gold hover:text-thai-dark flex items-center justify-center transition-all"><i class="fa-brands fa-youtube text-sm"></i></a>
+                    </div>
+                </div>
+
+                <!-- Regions Quick Link -->
+                <div>
+                    <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-4 border-l-4 border-thai-gold pl-2">ภูมิภาคท่องเที่ยว</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#gallery" onclick="setFilter('north')" class="hover:text-thai-gold transition-colors">ภาคเหนือ - ยอดดอยและวัฒนธรรม</a></li>
+                        <li><a href="#gallery" onclick="setFilter('central')" class="hover:text-thai-gold transition-colors">ภาคกลาง - ประวัติศาสตร์และสายน้ำ</a></li>
+                        <li><a href="#gallery" onclick="setFilter('south')" class="hover:text-thai-gold transition-colors">ภาคใต้ - ท้องทะเลและหมู่เกาะ</a></li>
+                        <li><a href="#gallery" onclick="setFilter('northeast')" class="hover:text-thai-gold transition-colors">ภาคอีสาน - ศิลปะประเพณีอันยิ่งใหญ่</a></li>
+                    </ul>
+                </div>
+
+                <!-- Customizer Manual -->
+                <div>
+                    <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-4 border-l-4 border-thai-gold pl-2">แนะนำการใช้งานด่วน</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li>1. กดปุ่ม "เปิดโหมดแก้ไขรูปภาพ"</li>
+                        <li>2. นำภาพโปรดของคุณมาแต่งเติม</li>
+                        <li>3. กดคัดลอก JSON ไปใช้งานต่อ</li>
+                        <li>4. บันทึกข้อมูลและประวัติการจำลอง</li>
+                    </ul>
+                </div>
+
+                <!-- Feedback / Contact Form -->
+                <div>
+                    <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-4 border-l-4 border-thai-gold pl-2">ส่งความคิดเห็นของคุณ</h4>
+                    <form onsubmit="handleFeedback(event)" class="space-y-3">
+                        <input type="email" required id="feedback-email" placeholder="อีเมลของคุณ..." class="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-xl text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-thai-gold transition-all">
+                        <button type="submit" class="w-full py-2 bg-thai-gold hover:bg-thai-goldDark text-thai-dark font-bold rounded-xl text-xs uppercase shadow-md transition-all">
+                            ส่งอีเมลติดตามข่าวสาร
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center text-xs text-gray-500 gap-4">
+                <p>&copy; 2026 Amazing Siam - Thailand Tourism Showcase. All Rights Reserved. Create and enjoy your customize space!</p>
+                <div class="flex space-x-4">
+                    <a href="#" class="hover:underline">Privacy Policy</a>
+                    <a href="#" class="hover:underline">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script Logic -->
+    <script>
+        // --- DATA STATE ---
+        // Beautiful Initial Thailand Tourism Places with premium placeholders
+        const defaultAttractions = [
+            {
+                id: 'place-1',
+                title: 'วัดพระศรีรัตนศาสดาราม (วัดพระแก้ว)',
+                location: 'กรุงเทพมหานคร',
+                region: 'central',
+                tag: 'โบราณสถาน',
+                description: 'วัดคู่บ้านคู่เมืองของประเทศไทย ตั้งอยู่ในพระบรมมหาราชวัง เป็นที่ประดิษฐานพระพุทธมหามณีรัตนปฏิมากร (พระแก้วมรกต) แหล่งรวมวิจิตรศิลป์ชั้นสูงของชาติที่งดงามระดับโลก',
+                image: 'https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=800&q=80',
+                isOpen: '08:30 - 15:30 น.',
+                fee: 'คนไทยเข้าฟรี / ชาวต่างชาติ 500 บาท'
+            },
+            {
+                id: 'place-2',
+                title: 'ยอดดอยอินทนนท์',
+                location: 'เชียงใหม่',
+                region: 'north',
+                tag: 'ธรรมชาติ',
+                description: 'สูงสุดแดนสยาม สัมผัสอากาศหนาวเย็นตลอดทั้งปี ชมความสมบูรณ์ของป่าดึกดำบรรพ์ เส้นทางศึกษาธรรมชาติอ่างกา และกิ่วแม่ปานอันงดงามพร้อมชมทะเลหมอกสุดตระการตา',
+                image: 'https://images.unsplash.com/photo-1589308078059-be1415eab4c3?auto=format&fit=crop&w=800&q=80',
+                isOpen: '05:00 - 18:00 น.',
+                fee: 'คนไทย 50 บาท / เด็ก 20 บาท'
+            },
+            {
+                id: 'place-3',
+                title: 'หาดไร่เลย์',
+                location: 'กระบี่',
+                region: 'south',
+                tag: 'ทะเล & กิจกรรม',
+                description: 'คาบสมุทรระดับโลกที่ล้อมรอบด้วยหน้าผาหินปูนสูงตระหง่าน น้ำทะเลใสสีคราม และทรายละเอียดขาวดุจแป้ง เป็นสวรรค์ของนักปีนหน้าผาทั่วโลกและผู้รักความเงียบสงบผ่อนคลาย',
+                image: 'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?auto=format&fit=crop&w=800&q=80',
+                isOpen: 'เปิดตลอด 24 ชั่วโมง',
+                fee: 'เข้าชมฟรี (มีค่าเรือข้ามฟาก)'
+            },
+            {
+                id: 'place-4',
+                title: 'อุทยานประวัติศาสตร์สุโขทัย',
+                location: 'สุโขทัย',
+                region: 'central',
+                tag: 'มรดกโลก',
+                description: 'มรดกโลกอันทรงคุณค่าทางประวัติศาสตร์ ชมผังเมืองโบราณ วัดมหาธาตุ พระอัจนะพระพุทธรูปปูนปั้นปางมารวิชัยศิลปะสุโขทัยแท้ ๆ ปั่นจักรยานรับลมเย็นชื่นชมโบราณคดีที่สมบูรณ์',
+                image: 'https://images.unsplash.com/photo-1590001155093-a3c66ab0c3ff?auto=format&fit=crop&w=800&q=80',
+                isOpen: '06:00 - 19:30 น.',
+                fee: 'คนไทย 20 บาท / ต่างชาติ 100 บาท'
+            },
+            {
+                id: 'place-5',
+                title: 'หมู่เกาะสิมิลัน',
+                location: 'พังงา',
+                region: 'south',
+                tag: 'ทะเล & ดำน้ำ',
+                description: 'หมู่เกาะที่เลื่องชื่อด้านความงามของโลกใต้น้ำ ปะการังสีสันตระการตาและฝูงปลานานาพันธุ์ มีสัญลักษณ์ "หินเรือใบ" โดดเด่นเคียงข้างกับผืนน้ำใสราวกับกระจก',
+                image: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=800&q=80',
+                isOpen: 'เปิดฤดูท่องเที่ยว (ตุลาคม - พฤษภาคม)',
+                fee: 'คนไทย 100 บาท (อุทยานแห่งชาติ)'
+            },
+            {
+                id: 'place-6',
+                title: 'ปราสาทหินพิมาย',
+                location: 'นครราชสีมา',
+                region: 'northeast',
+                tag: 'ศิลปวัฒนธรรม',
+                description: 'โบราณสถานขอมที่ใหญ่ที่สุดในประเทศไทย อายุกว่าพันปี สร้างขึ้นด้วยศิลาแลงอันงดงามสะท้อนความรุ่งเรืองของสถาปัตยกรรมบาปวนและนครวัด สะท้อนรากเหง้าภูมิภาคอีสานที่เด่นชัด',
+                image: 'https://images.unsplash.com/photo-1628155930542-3c7a64e2c833?auto=format&fit=crop&w=800&q=80',
+                isOpen: '07:30 - 18:00 น.',
+                fee: 'คนไทย 20 บาท / ต่างชาติ 100 บาท'
+            }
+        ];
+
+        // Retrieve saved state or initialize with defaults
+        let attractions = JSON.parse(localStorage.getItem('thailand_attractions')) || defaultAttractions;
+        let isEditMode = false;
+        let currentFilter = 'all';
+        let searchQuery = '';
+        let uploadedImageBase64 = '';
+        let editUploadedImageBase64 = '';
+
+        // --- RENDER LOGIC ---
+        // Render attractions grid
+        function renderAttractions() {
+            const grid = document.getElementById('attractions-grid');
+            const emptyState = document.getElementById('empty-state');
+            grid.innerHTML = '';
+
+            const filtered = attractions.filter(place => {
+                const matchesFilter = currentFilter === 'all' || place.region === currentFilter;
+                const matchesSearch = place.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                                      place.location.toLowerCase().includes(searchQuery.toLowerCase());
+                return matchesFilter && matchesSearch;
+            });
+
+            if (filtered.length === 0) {
+                emptyState.classList.remove('hidden');
+                grid.classList.add('hidden');
+                return;
+            } else {
+                emptyState.classList.add('hidden');
+                grid.classList.remove('hidden');
+            }
+
+            filtered.forEach(place => {
+                const card = document.createElement('div');
+                card.className = "bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col group relative";
+                
+                // Card contents
+                card.innerHTML = `
+                    <!-- Card Top Image section -->
+                    <div class="relative h-56 overflow-hidden">
+                        <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src="${place.image}" alt="${place.title}" onerror="this.onerror=null; this.src='https://placehold.co/600x400/0f5132/ffffff?text=${encodeURIComponent(place.title)}'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                        <span class="absolute top-4 left-4 bg-thai-emerald text-white text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full shadow-sm">
+                            ${getRegionLabel(place.region)}
+                        </span>
+                        
+                        <!-- Custom Edit Mode Action Badge overlay -->
+                        ${isEditMode ? `
+                            <div class="absolute inset-0 bg-black/60 backdrop-blur-sm flex flex-col justify-center items-center gap-2 transition-all p-4 text-center">
+                                <span class="text-amber-400 font-bold text-xs"><i class="fa-solid fa-pen-to-square animate-pulse"></i> โหมดแก้ไขเปิดอยู่</span>
+                                <div class="flex gap-2">
+                                    <button onclick="openEditModal('${place.id}')" class="px-3 py-1.5 bg-amber-500 text-white font-semibold text-xs rounded-lg hover:bg-amber-600 transition-all flex items-center shadow-md">
+                                        <i class="fa-solid fa-edit mr-1"></i> แก้ไขข้อมูล/รูปภาพ
+                                    </button>
+                                    <button onclick="deleteAttraction('${place.id}')" class="px-3 py-1.5 bg-red-600 text-white font-semibold text-xs rounded-lg hover:bg-red-700 transition-all flex items-center shadow-md">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        ` : ''}
+
+                        <div class="absolute bottom-3 left-4 text-white">
+                            <span class="text-xs bg-white/20 backdrop-blur-sm px-2 py-0.5 rounded-md border border-white/10 text-white/95">${place.tag || 'สถานที่แนะนำ'}</span>
+                        </div>
+                    </div>
+
+                    <!-- Card Body -->
+                    <div class="p-5 flex-grow flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center text-xs text-gray-500 font-medium mb-1.5">
+                                <i class="fa-solid fa-map-pin text-thai-goldDark mr-1"></i>
+                                <span>${place.location}</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-gray-900 leading-snug group-hover:text-thai-emerald transition-colors mb-2">${place.title}</h3>
+                            <p class="text-sm text-gray-600 line-clamp-3 leading-relaxed mb-4">${place.description}</p>
+                        </div>
+
+                        <!-- Card Footer Info -->
+                        <div class="flex items-center justify-between pt-4 border-t border-gray-100 mt-auto">
+                            <div class="flex items-center text-xs text-amber-500 font-bold">
+                                <i class="fa-solid fa-star mr-1"></i> 4.9 (รีวิวดีเยี่ยม)
+                            </div>
+                            <button onclick="openModal('${place.id}')" class="text-sm font-bold text-thai-emerald hover:text-thai-goldDark transition-colors flex items-center group">
+                                ดูรายละเอียดเพิ่มเติม <i class="fa-solid fa-arrow-right-long ml-1 group-hover:translate-x-1 transition-transform"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function getRegionLabel(region) {
+            const labels = {
+                'north': 'ภาคเหนือ',
+                'central': 'ภาคกลาง',
+                'south': 'ภาคใต้',
+                'northeast': 'ภาคอีสาน'
+            };
+            return labels[region] || 'ประเทศไทย';
+        }
+
+        // --- FILTER & SEARCH INTERACTION ---
+        function setFilter(region, button) {
+            currentFilter = region;
+            
+            // Update active buttons styling
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => {
+                btn.className = "filter-btn px-4 py-2 rounded-xl text-sm font-medium transition-all bg-gray-100 text-gray-600 hover:bg-gray-200";
+            });
+
+            if (button) {
+                button.className = "filter-btn active px-4 py-2 rounded-xl text-sm font-medium transition-all bg-thai-emerald text-white shadow-sm";
+            } else {
+                // If trigger by outside, match button manually
+                const targetBtn = Array.from(buttons).find(b => b.textContent.includes(getRegionLabel(region)));
+                if (targetBtn) targetBtn.className = "filter-btn active px-4 py-2 rounded-xl text-sm font-medium transition-all bg-thai-emerald text-white shadow-sm";
+            }
+
+            renderAttractions();
+        }
+
+        function filterAttractions() {
+            searchQuery = document.getElementById('search-input').value;
+            renderAttractions();
+        }
+
+        // --- EDIT / DEV MODE LOGIC ---
+        // Toggle live developer preview/editing mode
+        const toggleEditModeBtn = document.getElementById('toggle-edit-mode');
+        const editorBanner = document.getElementById('editor-banner');
+        
+        toggleEditModeBtn.addEventListener('click', () => {
+            isEditMode = !isEditMode;
+            if (isEditMode) {
+                toggleEditModeBtn.className = "flex items-center space-x-2 px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-full text-sm font-medium shadow-md transition-all transform hover:scale-105";
+                document.getElementById('edit-btn-text').textContent = "ปิดโหมดแก้ไขรูปภาพ";
+                editorBanner.classList.remove('hidden');
+                showToast("เปิดโหมดจัดการรูปภาพและข้อมูลแล้ว!", "bg-amber-500", "fa-pen-to-square");
+            } else {
+                toggleEditModeBtn.className = "flex items-center space-x-2 px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-full text-sm font-medium shadow-md transition-all transform hover:scale-105";
+                document.getElementById('edit-btn-text').textContent = "เปิดโหมดแก้ไขรูปภาพ";
+                editorBanner.classList.add('hidden');
+                showToast("ปิดโหมดพัฒนาแล้ว ข้อมูลจะถูกแสดงตามปกติ", "bg-thai-emerald", "fa-check");
+            }
+            renderAttractions();
+        });
+
+        // --- STREAMING_CHUNK: Implementing File Upload Base64 conversion ---
+        // Handling image upload natively and convert to local previewable base64 format
+        function handleFileSelect(input) {
+            const statusLabel = document.getElementById('file-upload-status');
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    uploadedImageBase64 = e.target.result;
+                    statusLabel.innerHTML = `<i class="fa-solid fa-circle-check text-thai-emerald mr-2"></i> โหลดรูปภาพสำเร็จ: ${input.files[0].name.substring(0, 15)}...`;
+                    showToast("โหลดรูปภาพเตรียมเพิ่มเสร็จสิ้น!", "bg-blue-600", "fa-image");
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        function handleEditFileSelect(input) {
+            const statusLabel = document.getElementById('edit-file-status');
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    editUploadedImageBase64 = e.target.result;
+                    statusLabel.innerHTML = `<i class="fa-solid fa-circle-check text-green-500 mr-1"></i> โหลดรูปพร้อมใช้งานแล้ว`;
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        // --- CREATE ACTION ---
+        function handleAddAttraction(event) {
+            event.preventDefault();
+            
+            const title = document.getElementById('new-title').value;
+            const location = document.getElementById('new-location').value;
+            const region = document.getElementById('new-region').value;
+            const tag = document.getElementById('new-tag').value || 'สถานที่นำเข้า';
+            const desc = document.getElementById('new-description').value;
+            let image = document.getElementById('new-image-url').value;
+
+            // Prioritize local uploaded files, fallback to input url, then a default elegant placeholder
+            if (uploadedImageBase64) {
+                image = uploadedImageBase64;
+            } else if (!image) {
+                image = `https://placehold.co/800x600/105132/ffffff?text=${encodeURIComponent(title)}`;
+            }
+
+            const newPlace = {
+                id: 'place-' + Date.now(),
+                title,
+                location,
+                region,
+                tag,
+                description: desc,
+                image,
+                isOpen: '08:00 - 17:00 น.',
+                fee: 'ติดต่อสอบถามผู้ให้บริการ'
+            };
+
+            attractions.unshift(newPlace);
+            saveDataToLocalStorage();
+            renderAttractions();
+            
+            // Reset Form Fields
+            document.getElementById('add-attraction-form').reset();
+            document.getElementById('file-upload-status').innerHTML = `<i class="fa-solid fa-cloud-arrow-up mr-2 text-thai-emerald"></i>คลิกเพื่อเลือกไฟล์รูปภาพ`;
+            uploadedImageBase64 = '';
+
+            showToast("เพิ่มสถานที่ท่องเที่ยวสำเร็จแล้ว!", "bg-thai-emerald", "fa-circle-plus");
+            scrollToSection('gallery');
+        }
+
+        // --- STREAMING_CHUNK: Coding Delete and Edit functions ---
+        // DELETE ACTION
+        function deleteAttraction(id) {
+            if (confirm("คุณแน่ใจหรือไม่ว่าต้องการลบสถานที่นี้ออกจากการจำลอง?")) {
+                attractions = attractions.filter(place => place.id !== id);
+                saveDataToLocalStorage();
+                renderAttractions();
+                showToast("ลบข้อมูลและรูปภาพสำเร็จแล้ว", "bg-red-500", "fa-trash-can");
+            }
+        }
+
+        // EDIT ACTIONS
+        function openEditModal(id) {
+            const place = attractions.find(p => p.id === id);
+            if (!place) return;
+
+            document.getElementById('edit-id').value = place.id;
+            document.getElementById('edit-title').value = place.title;
+            document.getElementById('edit-location').value = place.location;
+            document.getElementById('edit-image-url').value = place.image.startsWith('data:') ? '' : place.image;
+            document.getElementById('edit-description').value = place.description;
+            
+            // Reset file upload placeholder state
+            document.getElementById('edit-file-status').innerHTML = `<i class="fa-solid fa-file-image text-amber-500 mr-1"></i> เปลี่ยนด้วยภาพจากเครื่อง`;
+            editUploadedImageBase64 = '';
+
+            document.getElementById('edit-modal').classList.remove('hidden');
+        }
+
+        function closeEditModal() {
+            document.getElementById('edit-modal').classList.add('hidden');
+        }
+
+        function handleSaveEdit(event) {
+            event.preventDefault();
+            const id = document.getElementById('edit-id').value;
+            const title = document.getElementById('edit-title').value;
+            const location = document.getElementById('edit-location').value;
+            const desc = document.getElementById('edit-description').value;
+            let image = document.getElementById('edit-image-url').value;
+
+            if (editUploadedImageBase64) {
+                image = editUploadedImageBase64;
+            }
+
+            attractions = attractions.map(place => {
+                if (place.id === id) {
+                    return {
+                        ...place,
+                        title,
+                        location,
+                        description: desc,
+                        image: image || place.image
+                    };
+                }
+                return place;
+            });
+
+            saveDataToLocalStorage();
+            renderAttractions();
+            closeEditModal();
+            showToast("ปรับปรุงข้อมูลและรูปถ่ายของคุณแล้ว!", "bg-thai-emerald", "fa-circle-check");
+        }
+
+        // --- MODAL UTILS (VIEW DETAILS) ---
+        function openModal(id) {
+            const place = attractions.find(p => p.id === id);
+            if (!place) return;
+
+            document.getElementById('modal-image').src = place.image;
+            document.getElementById('modal-title-text').textContent = place.title;
+            document.getElementById('modal-location').innerHTML = `<i class="fa-solid fa-location-dot text-thai-goldDark mr-1"></i> อำเภอ/ตำบล, จ.${place.location}, ประเทศไทย`;
+            document.getElementById('modal-region').textContent = getRegionLabel(place.region);
+            document.getElementById('modal-tag').textContent = place.tag || 'แนะนำ';
+            document.getElementById('modal-desc').textContent = place.description;
+
+            document.getElementById('detail-modal').classList.remove('hidden');
+            document.body.classList.add('overflow-hidden'); // Disable body scroll
+        }
+
+        function closeModal() {
+            document.getElementById('detail-modal').classList.add('hidden');
+            document.body.classList.remove('overflow-hidden'); // Re-enable scroll
+        }
+
+        // --- TOAST NOTIFICATIONS ---
+        function showToast(message, bgColorClass = "bg-thai-dark", iconClass = "fa-check") {
+            const toast = document.getElementById('toast-message');
+            const toastText = document.getElementById('toast-text');
+            const toastIcon = document.getElementById('toast-icon');
+            const toastIconBg = document.getElementById('toast-icon-bg');
+
+            toastText.textContent = message;
+            toastIcon.className = `fa-solid ${iconClass}`;
+            toastIconBg.className = `w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${bgColorClass} text-white`;
+
+            toast.classList.remove('hidden');
+            toast.classList.remove('translate-y-20');
+            toast.classList.add('translate-y-0');
+
+            setTimeout(() => {
+                toast.classList.add('translate-y-20');
+                setTimeout(() => {
+                    toast.classList.add('hidden');
+                }, 300);
+            }, 3000);
+        }
+
+        // --- LOCAL STORAGE & JSON UTILS ---
+        function saveDataToLocalStorage() {
+            localStorage.setItem('thailand_attractions', JSON.stringify(attractions));
+        }
+
+        // Reset to initial mockup content
+        function resetToDefault() {
+            if (confirm("ต้องการรีเซ็ตข้อมูลทั้งหมดกลับเป็นค่าเริ่มต้นหรือไม่? การลบจะรวมถึงสถานที่จำลองและภาพที่คุณอัปโหลดไว้ด้วย")) {
+                localStorage.removeItem('thailand_attractions');
+                attractions = [...defaultAttractions];
+                renderAttractions();
+                showToast("กู้คืนข้อมูลเริ่มต้นสำเร็จแล้ว", "bg-thai-emerald", "fa-rotate-left");
+            }
+        }
+
+        // Share Link Simulation
+        function shareAttraction() {
+            // Simulated Clipboard copy
+            const dummyUrl = window.location.href + "?place=" + encodeURIComponent(document.getElementById('modal-title-text').textContent);
+            
+            // Create a temporary input to use document.execCommand
+            const tempInput = document.createElement("input");
+            tempInput.value = dummyUrl;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+
+            showToast("คัดลอกลิงก์แชร์จำลองไปยังคลิปบอร์ดแล้ว!", "bg-thai-emerald", "fa-clipboard");
+        }
+
+        // Export modified data as a JSON config, helping users save their customized list
+        function exportJSONData() {
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(attractions, null, 2));
+            const downloadAnchor = document.createElement('a');
+            downloadAnchor.setAttribute("href",     dataStr);
+            downloadAnchor.setAttribute("download", "amazing_thailand_places.json");
+            document.body.appendChild(downloadAnchor);
+            downloadAnchor.click();
+            downloadAnchor.remove();
+            showToast("ส่งออกไฟล์แก้ไขเรียบร้อยแล้ว!", "bg-blue-600", "fa-file-code");
+        }
+
+        // Handle simple feedback submission
+        function handleFeedback(event) {
+            event.preventDefault();
+            const email = document.getElementById('feedback-email').value;
+            showToast(`ขอบคุณ! ระบบจำลองการแชร์ข้อมูลส่งเรียบร้อย (${email})`, "bg-thai-emerald", "fa-paper-plane");
+            document.getElementById('feedback-email').value = '';
+        }
+
+        // Helper helper to jump around beautifully
+        function scrollToSection(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // --- WINDOW LOAD INITIALIZATION ---
+        window.onload = function() {
+            renderAttractions();
+        };
+    </script>
+</body>
+</html>
