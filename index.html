@@ -1,156 +1,86 @@
+:Pet Gallery Website:index.html
 <!DOCTYPE html>
-<html lang="th">
+<html lang="th" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Favorite Pets - แกลเลอรีสัตว์เลี้ยงของฉัน</title>
-    <style>
-        /* ตั้งค่าฟอนต์และสไตล์พื้นฐาน */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f7f9fa;
-            color: #333;
+    <title>My Precious Pets - แกลเลอรีสัตว์เลี้ยงแสนรัก</title>
+    <!-- Tailwind CSS for modern and premium styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#fff7ed',
+                            100: '#ffedd5',
+                            500: '#f97316',
+                            600: '#ea580c',
+                            700: '#c2410c',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Prompt', 'Inter', 'sans-serif'],
+                    }
+                }
+            }
         }
-
-        /* ส่วนหัวของเว็บไซต์ (Header) */
-        header {
-            background-color: #ff9f43;
-            color: white;
-            text-align: center;
-            padding: 2rem 1rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 2.5rem;
-        }
-
-        header p {
-            margin: 0.5rem 0 0 0;
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-
-        /* กล่องข้อความต้อนรับ */
-        .intro {
-            max-width: 800px;
-            margin: 2rem auto;
-            text-align: center;
-            padding: 0 1rem;
-        }
-
-        /* ส่วนแสดงรูปภาพ (Grid Layout) */
-        .gallery-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem 3rem 1rem;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
-        }
-
-        /* การ์ดรูปภาพสัตว์เลี้ยง */
-        .pet-card {
-            background-color: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .pet-card:hover {
-            transform: translateY(-5px);
-        }
-
-        /* รูปภาพ */
-        .pet-card img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover; /* ปรับให้รูปพอดีกล่อง ไม่บิดเบี้ยว */
-            background-color: #e0e0e0; /* สีพื้นหลังระหว่างรอโหลดรูป */
-        }
-
-        /* ข้อมูลใต้รูป */
-        .pet-info {
-            padding: 1rem;
-        }
-
-        .pet-info h3 {
-            margin: 0 0 0.5rem 0;
-            color: #ff9f43;
-        }
-
-        .pet-info p {
-            margin: 0;
-            font-size: 0.95rem;
-            color: #666;
-            line-height: 1.4;
-        }
-
-        /* ส่วนท้ายของเว็บ (Footer) */
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 1.5rem;
-            font-size: 0.9rem;
-        }
-    </style>
+    </script>
+    <!-- Google Fonts: Prompt for beautiful Thai typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons for premium design icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-<body>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-300">
 
-    <header>
-        <h1>🐾 My Favorite Pets 🐾</h1>
-        <p>พื้นที่รวมความน่ารักของสัตว์เลี้ยงที่ฉันตกหลุมรัก</p>
+    <!-- Header Section -->
+    <header class="sticky top-0 z-40 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="p-2.5 bg-brand-500 text-white rounded-2xl shadow-lg shadow-brand-500/20">
+                    <i data-lucide="paw-print" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
+                        My Pets <span class="text-brand-500">Gallery</span>
+                    </h1>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 hidden sm:block">รวมภาพความน่ารักของเหล่าเพื่อนซี้สี่ขา</p>
+                </div>
+            </div>
+
+            <!-- Header Controls -->
+            <div class="flex items-center space-x-3">
+                <!-- Instruction Button -->
+                <button onclick="toggleInstructions()" class="flex items-center space-x-1.5 px-3 py-2 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-xl text-sm font-medium transition">
+                    <i data-lucide="help-circle" class="w-4 h-4"></i>
+                    <span class="hidden sm:inline">วิธีเปลี่ยนรูปภาพ</span>
+                </button>
+                <!-- Dark Mode Toggle -->
+                <button onclick="toggleDarkMode()" class="p-2.5 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-xl transition" aria-label="Toggle Dark Mode">
+                    <i id="theme-icon-light" data-lucide="sun" class="w-5 h-5 hidden"></i>
+                    <i id="theme-icon-dark" data-lucide="moon" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </div>
     </header>
 
-    <section class="intro">
-        <h2>ยินดีต้อนรับสู่แกลเลอรีน้องๆ ของฉัน</h2>
-        <p>นี่คือคอลเลกชันภาพถ่ายสัตว์เลี้ยงสุดโปรด คุณสามารถเปลี่ยนรูปภาพและข้อความด้านล่างนี้เป็นของตัวเองได้เลยนะ!</p>
-    </section>
-
-    <main class="gallery-container">
-
-        <div class="pet-card">
-            <img src="pet1.jpg" alt="สัตว์เลี้ยงตัวที่ 1">
-            <div class="pet-info">
-                <h3>น้องตัวที่หนึ่ง</h3>
-                <p>คำอธิบายความน่ารักสั้นๆ เช่น สายพันธุ์ นิสัย หรือวีรกรรมสุดแสบของน้อง</p>
-            </div>
+    <!-- Main Content -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        
+        <!-- Hero Section -->
+        <div class="text-center max-w-2xl mx-auto mb-12">
+            <span class="px-3 py-1 bg-brand-100 dark:bg-brand-900/30 text-brand-600 dark:text-brand-400 text-xs font-semibold tracking-wider uppercase rounded-full">🐾 Welcome to My Pet World</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-3 mb-4 tracking-tight">
+                แกลเลอรีสัตว์เลี้ยงแสนรัก
+            </h2>
+            <p class="text-slate-600 dark:text-slate-300">
+                ยินดีต้อนรับสู่พื้นที่รวบรวมรอยยิ้ม ความป่วน และความน่ารักของเหล่าสัตว์เลี้ยงที่คุณรัก คุณสามารถเลือกดูภาพ ค้นหา และคัดกรองตามหมวดหมู่ได้เลย!
+            </p>
         </div>
 
-        <div class="pet-card">
-            <img src="pet2.jpg" alt="สัตว์เลี้ยงตัวที่ 2">
-            <div class="pet-info">
-                <h3>น้องตัวที่สอง</h3>
-                <p>เพิ่มรายละเอียดของน้องตัวที่สองได้ตรงนี้เลย รูปภาพจะจัดเรียงให้อัตโนมัติ</p>
-            </div>
-        </div>
-
-        <div class="pet-card">
-            <img src="pet3.jpg" alt="สัตว์เลี้ยงตัวที่ 3">
-            <div class="pet-info">
-                <h3>น้องตัวที่สาม</h3>
-                <p>สามารถก๊อปปี้บล็อก "pet-card" เพิ่มเพื่อเพิ่มจำนวนรูปภาพได้ไม่จำกัด</p>
-            </div>
-        </div>
-
-        <div class="pet-card">
-            <img src="pet4.jpg" alt="สัตว์เลี้ยงตัวที่ 4">
-            <div class="pet-info">
-                <h3>น้องตัวที่สี่</h3>
-                <p>ทดสอบการแสดงผลเมื่อมีรูปภาพหลายๆ รูปในหน้าจอเดียวกัน</p>
-            </div>
-        </div>
-
-    </main>
-
-    <footer>
-        <p>© 2026 Created by Me | Made with ❤️ for my pets</p>
-    </footer>
-
-</body>
-</html>
+        <!-- How-to Instructions Panel (Hidden by default) -->
+        <div id="instructions-panel" class="hidden mb-8 p
