@@ -1,86 +1,103 @@
-:Pet Gallery Website:index.html
 <!DOCTYPE html>
-<html lang="th" class="scroll-smooth">
+<html lang="th">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Precious Pets - แกลเลอรีสัตว์เลี้ยงแสนรัก</title>
-    <!-- Tailwind CSS for modern and premium styling -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            50: '#fff7ed',
-                            100: '#ffedd5',
-                            500: '#f97316',
-                            600: '#ea580c',
-                            700: '#c2410c',
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Prompt', 'Inter', 'sans-serif'],
-                    }
-                }
-            }
+    <title>ตารางข้อมูลของฉัน</title>
+    <style>
+        /* ตั้งค่าฟอนต์และการจัดวางหน้าเว็บ */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
         }
-    </script>
-    <!-- Google Fonts: Prompt for beautiful Thai typography -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Lucide Icons for premium design icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+
+        /* กล่องสไตล์สำหรับตาราง */
+        .table-container {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: white;
+            width: 80%;
+            max-width: 800px;
+        }
+
+        /* สไตล์หลักของตาราง */
+        table {
+            width: 100%;
+            border-collapse: collapse; /* ทำให้เส้นขอบรวมกันเป็นเส้นเดียว */
+            text-align: left;
+        }
+
+        /* สไตล์ส่วนหัวตาราง (Header) */
+        th {
+            background-color: #007bff;
+            color: white;
+            padding: 14px 20px;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+        }
+
+        /* สไตล์ส่วนเนื้อหา (Rows) */
+        td {
+            padding: 12px 20px;
+            border-bottom: 1px solid #eeeeee;
+            font-size: 15px;
+        }
+
+        /* ไฮไลท์แถวเว้นแถว (Zebra Striping) เพื่อให้อ่านง่ายขึ้น */
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        /* เอฟเฟกต์เมื่อเอาเมาส์ไปชี้ที่แถว (Hover Effect) */
+        tr:hover {
+            background-color: #f1f3f5;
+            transition: background-color 0.2s ease;
+        }
+    </style>
 </head>
-<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-300">
+<body>
 
-    <!-- Header Section -->
-    <header class="sticky top-0 z-40 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-                <div class="p-2.5 bg-brand-500 text-white rounded-2xl shadow-lg shadow-brand-500/20">
-                    <i data-lucide="paw-print" class="w-6 h-6"></i>
-                </div>
-                <div>
-                    <h1 class="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
-                        My Pets <span class="text-brand-500">Gallery</span>
-                    </h1>
-                    <p class="text-xs text-slate-500 dark:text-slate-400 hidden sm:block">รวมภาพความน่ารักของเหล่าเพื่อนซี้สี่ขา</p>
-                </div>
-            </div>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>ลำดับ</th>
+                    <th>ชื่อ-นามสกุล</th>
+                    <th>ตำแหน่ง</th>
+                    <th>สถานะ</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>สมชาย ใจดี</td>
+                    <td>Web Developer</td>
+                    <td style="color: #28a745; font-weight: bold;">ใช้งานอยู่</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>สมศรี มีสุข</td>
+                    <td>UX/UI Designer</td>
+                    <td style="color: #28a745; font-weight: bold;">ใช้งานอยู่</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>สมศักดิ์ รักเรียน</td>
+                    <td>Data Analyst</td>
+                    <td style="color: #dc3545; font-weight: bold;">ระงับใช้งาน</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
-            <!-- Header Controls -->
-            <div class="flex items-center space-x-3">
-                <!-- Instruction Button -->
-                <button onclick="toggleInstructions()" class="flex items-center space-x-1.5 px-3 py-2 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-xl text-sm font-medium transition">
-                    <i data-lucide="help-circle" class="w-4 h-4"></i>
-                    <span class="hidden sm:inline">วิธีเปลี่ยนรูปภาพ</span>
-                </button>
-                <!-- Dark Mode Toggle -->
-                <button onclick="toggleDarkMode()" class="p-2.5 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-xl transition" aria-label="Toggle Dark Mode">
-                    <i id="theme-icon-light" data-lucide="sun" class="w-5 h-5 hidden"></i>
-                    <i id="theme-icon-dark" data-lucide="moon" class="w-5 h-5"></i>
-                </button>
-            </div>
-        </div>
-    </header>
-
-    <!-- Main Content -->
-    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        
-        <!-- Hero Section -->
-        <div class="text-center max-w-2xl mx-auto mb-12">
-            <span class="px-3 py-1 bg-brand-100 dark:bg-brand-900/30 text-brand-600 dark:text-brand-400 text-xs font-semibold tracking-wider uppercase rounded-full">🐾 Welcome to My Pet World</span>
-            <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-3 mb-4 tracking-tight">
-                แกลเลอรีสัตว์เลี้ยงแสนรัก
-            </h2>
-            <p class="text-slate-600 dark:text-slate-300">
-                ยินดีต้อนรับสู่พื้นที่รวบรวมรอยยิ้ม ความป่วน และความน่ารักของเหล่าสัตว์เลี้ยงที่คุณรัก คุณสามารถเลือกดูภาพ ค้นหา และคัดกรองตามหมวดหมู่ได้เลย!
-            </p>
-        </div>
-
-        <!-- How-to Instructions Panel (Hidden by default) -->
-        <div id="instructions-panel" class="hidden mb-8 p
+</body>
+</html>
