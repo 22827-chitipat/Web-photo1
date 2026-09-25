@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>แกลเลอรีรูปภาพของฉัน</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", Tahoma, sans-serif;
+            background: linear-gradient(135deg, #eef7ff, #f8fbff);
+            color: #333;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 20px 40px;
+        }
+
+        header h1 {
+            font-size: 42px;
+            color: #1769aa;
+            margin-bottom: 12px;
+        }
+
+        header p {
+            font-size: 18px;
+            color: #666;
+        }
+
+        .gallery {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.10);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.18);
+        }
+
+        .card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+            transition: 0.4s;
+        }
+
+        .card:hover img {
+            transform: scale(1.05);
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .content h2 {
+            font-size: 22px;
+            color: #1769aa;
+            margin-bottom: 10px;
+        }
+
+        .content p {
+            font-size: 15px;
+            line-height: 1.7;
+            color: #666;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 40px;
+            background: #1769aa;
+            color: white;
+        }
+
+        footer p {
+            margin: 5px;
+        }
+
+        @media (max-width: 900px) {
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 32px;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .card img {
+                height: 230px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>🐾 แกลเลอรีรูปสัตว์ของฉัน</h1>
+        <p>รวมภาพสัตว์ที่ฉันชื่นชอบ 3 ชนิด</p>
+    </header>
+
+    <section class="gallery">
+
+        <div class="card">
+            <img src="https://cdn.pixabay.com/photo/2017/06/21/00/46/dog-2425603_1280.jpg" alt="สุนัข">
+            <div class="content">
+                <h2>สุนัข</h2>
+                <p>
+                    เพื่อนสี่ขาแสนซื่อสัตย์ที่ผู้คนทั่วโลกรักและเลี้ยงไว้เป็นสัตว์เลี้ยงคู่บ้าน
+                </p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://cdn.pixabay.com/photo/2017/11/09/21/41/cat-2934720_1280.jpg" alt="แมว">
+            <div class="content">
+                <h2>แมว</h2>
+                <p>
+                    สัตว์เลี้ยงที่มีความน่ารักและเป็นอิสระในตัวเอง เป็นที่รักของใครหลายคน
+                </p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://cdn.pixabay.com/photo/2016/11/14/04/45/elephant-1822636_1280.jpg" alt="ช้าง">
+            <div class="content">
+                <h2>ช้าง</h2>
+                <p>
+                    สัตว์บกที่มีขนาดใหญ่ที่สุด มีความฉลาดและความจำดีเป็นเลิศ
+                </p>
+            </div>
+        </div>
+
+    </section>
+
+    <footer>
+        <p>© 2026 แกลเลอรีรูปสัตว์ของฉัน</p>
+        <p>สร้างสรรค์โดยนักเรียน</p>
+    </footer>
+
+</body>
+</html>
